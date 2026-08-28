@@ -1,0 +1,14 @@
+{% macro prototypeChangeRemoved(params = {}) %}
+  {%- set description = params.description or params.text or "Removed item" -%}
+  <prototype-change
+    class="prototype-changes__annotation prototype-changes__annotation--removed"
+    data-prototype-change
+    data-change-removed="true"
+    data-change-id="{{ params.id | default('') | escape }}"
+    data-change-version="{{ params.version | default('') | escape }}"
+    data-change-type="removed"
+    data-change-description="{{ description | escape }}"
+    {% if params.title %}data-change-title="{{ params.title | escape }}"{% endif %}
+    hidden
+  ></prototype-change>
+{% endmacro %}

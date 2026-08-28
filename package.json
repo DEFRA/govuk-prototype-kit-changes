@@ -1,0 +1,42 @@
+{
+  "name": "@defra/govuk-prototype-kit-changes",
+  "version": "0.1.0",
+  "description": "Annotate meaningful design changes directly in GOV.UK Prototype Kit pages.",
+  "keywords": [
+    "govuk",
+    "govuk-prototype-kit",
+    "prototype",
+    "design",
+    "annotations",
+    "handoff"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEFRA/govuk-prototype-kit-changes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DEFRA/govuk-prototype-kit-changes/issues"
+  },
+  "homepage": "https://github.com/DEFRA/govuk-prototype-kit-changes#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "govuk-prototype-kit.config.json",
+    "nunjucks",
+    "scripts",
+    "styles",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "peerDependencies": {
+    "govuk-prototype-kit": ">=13"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "nunjucksPaths": [
+    "/nunjucks"
+  ],
+  "nunjucksMacros": [
+    {
+      "macroName": "prototypeChange",
+      "importFrom": "prototypeChanges/macros/change.njk"
+    },
+    {
+      "macroName": "prototypeChangeRemoved",
+      "importFrom": "prototypeChanges/macros/removed.njk"
+    }
+  ],
+  "sass": [
+    "/styles/prototype-changes.scss"
+  ],
+  "scripts": [
+    "/scripts/prototype-changes.js"
+  ]
+}

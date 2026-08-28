@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}Agreement details{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% call prototypeChange({
+        id: "agreement-reference",
+        type: "content",
+        title: "Agreement reference",
+        description: "Changed 'agreement number' to 'agreement reference'."
+      }) %}
+        {{ govukInput({
+          name: "agreementReference",
+          label: {
+            text: "What is the agreement reference?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          }
+        }) }}
+      {% endcall %}
+
+      {% call prototypeChange({
+        id: "continue-validation",
+        type: "validation",
+        description: "References shorter than 10 characters are now rejected."
+      }) %}
+        {{ govukButton({ text: "Continue" }) }}
+      {% endcall %}
+
+      {{ prototypeChangeRemoved({
+        id: "save-return",
+        title: "Save and return",
+        description: "Removed the 'Save and come back later' link."
+      }) }}
+
+    </div>
+  </div>
+{% endblock %}

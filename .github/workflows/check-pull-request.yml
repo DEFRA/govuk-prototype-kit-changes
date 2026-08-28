@@ -1,0 +1,49 @@
+name: Check pull request
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Get package version
+        id: package-version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Get base branch version
+        id: base-version
+        run: |
+          git fetch origin main --depth=1
+          echo "version=$(git show origin/main:package.json | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).version")" >> $GITHUB_OUTPUT
+
+      - name: Check version incremented
+        run: |
+          PR_VERSION="${{ steps.package-version.outputs.version }}"
+          BASE_VERSION="${{ steps.base-version.outputs.version }}"
+          node -e "
+          const [a, b] = ['$PR_VERSION', '$BASE_VERSION'].map(v => v.split('.').map(Number));
+          const isGreater = a[0] > b[0] || (a[0] === b[0] && a[1] > b[1]) || (a[0] === b[0] && a[1] === b[1] && a[2] > b[2]);
+          if (!isGreater) {
+            console.error('::error::Version in package.json ($PR_VERSION) must be greater than the base branch version ($BASE_VERSION)');
+            process.exit(1);
+          }
+          "

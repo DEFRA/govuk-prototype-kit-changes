@@ -1,0 +1,13 @@
+{% macro prototypeChange(params = {}) %}
+  {%- set type = params.type or "content" -%}
+  {%- set description = params.description or params.text or "Change" -%}
+  <prototype-change
+    class="prototype-changes__annotation"
+    data-prototype-change
+    data-change-id="{{ params.id | default('') | escape }}"
+    data-change-version="{{ params.version | default('') | escape }}"
+    data-change-type="{{ type | escape }}"
+    data-change-description="{{ description | escape }}"
+    {% if params.title %}data-change-title="{{ params.title | escape }}"{% endif %}
+  >{{ caller() }}</prototype-change>
+{% endmacro %}

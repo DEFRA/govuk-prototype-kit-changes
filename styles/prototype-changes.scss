@@ -1,0 +1,366 @@
+.prototype-changes__annotation {
+  display: contents;
+}
+
+.prototype-changes__annotation--removed[hidden] {
+  display: none;
+}
+
+.prototype-changes__annotation--removed:not([hidden]) {
+  display: block;
+  min-height: 2.5rem;
+  margin: 15px 0;
+  border: 3px dashed #505a5f;
+  background: #f3f2f1;
+}
+
+.prototype-changes__overlay-root,
+.prototype-changes__drawer {
+  font-family: arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.prototype-changes__overlay-root *,
+.prototype-changes__drawer * {
+  box-sizing: border-box;
+}
+
+.prototype-changes__overlay-root {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 0;
+  z-index: 9990;
+  pointer-events: none;
+}
+
+.prototype-changes__box {
+  position: absolute;
+  border: 3px solid #ffdd00;
+  outline: 2px solid #0b0c0c;
+  outline-offset: 1px;
+  background: rgb(255 221 0 / 8%);
+  pointer-events: none;
+}
+
+.prototype-changes__box--focused {
+  border-width: 5px;
+  background: rgb(255 221 0 / 20%);
+}
+
+.prototype-changes__badge {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 30px;
+  height: 30px;
+  padding: 0 7px;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #0b0c0c;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+// Injected into an existing footer feature toggles panel (#prototype-toggles).
+// Host prototypes that use the .app-prototype-switch pattern style this fully;
+// the rule below only guarantees sensible spacing when those styles are absent.
+.prototype-changes__switch {
+  margin-top: 10px;
+}
+
+// Footer feature toggles panel created by the plugin when a host prototype does
+// not already provide its own #prototype-toggles panel. The markup and styling
+// mirror the bespoke panel used by prototypes such as fcp-future-rps so the
+// "Show changes" control looks and behaves the same everywhere. Every rule is
+// scoped to the plugin-created panel (.prototype-changes__toggle-panel) so it
+// never overrides a host prototype that already styles .app-prototype-switch.
+.prototype-changes__toggle-panel.app-footer-prototype-tools {
+  display: block;
+  margin-top: 16px;
+  margin-left: 0;
+}
+
+.prototype-changes__toggle-panel .govuk-details__summary {
+  margin-top: 0;
+  color: #0b0c0c;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.prototype-changes__toggle-panel .govuk-details__summary:hover {
+  color: #0b0c0c;
+}
+
+.prototype-changes__toggle-panel .app-footer-prototype-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prototype-changes__toggle-panel .app-footer-prototype-toggles .app-prototype-switch + .app-prototype-switch {
+  margin-top: 0;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch {
+  max-width: 100%;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__label {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__title {
+  display: block;
+  color: #0b0c0c;
+  font-family: "GDS Transport", arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__hint {
+  display: block;
+  color: #505a5f;
+  font-family: "GDS Transport", arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__control {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 24px;
+  margin-top: 2px;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__input {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 24px;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: #b1b4b6;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__slider::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(11, 12, 12, 0.25);
+  transition: transform 0.15s ease-in-out;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__input:checked + .app-prototype-switch__slider {
+  background-color: #00703c;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__input:checked + .app-prototype-switch__slider::before {
+  transform: translateX(20px);
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__input:focus + .app-prototype-switch__slider {
+  outline: 3px solid transparent;
+  box-shadow: 0 0 0 3px #ffdd00;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__input:focus:not(:focus-visible) + .app-prototype-switch__slider {
+  box-shadow: none;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch__input:focus-visible + .app-prototype-switch__slider {
+  outline: 3px solid transparent;
+  box-shadow: 0 0 0 3px #ffdd00;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch--footer {
+  max-width: 100%;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch--footer .app-prototype-switch__label {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch--footer .app-prototype-switch__title {
+  font-weight: 400;
+}
+
+.prototype-changes__toggle-panel .app-prototype-switch--footer .app-prototype-switch__control {
+  margin-top: 0;
+}
+
+.prototype-changes__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10020;
+  width: min(400px, 92vw);
+  height: 100vh;
+  overflow: auto;
+  padding: 20px;
+  border-left: 4px solid #0b0c0c;
+  background: #ffffff;
+  box-shadow: -4px 0 16px rgb(0 0 0 / 20%);
+  color: #0b0c0c;
+}
+
+.prototype-changes__drawer[hidden] {
+  display: none;
+}
+
+.prototype-changes__drawer-header {
+  display: flex;
+  gap: 16px;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.prototype-changes__drawer h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.prototype-changes__close {
+  border: 0;
+  background: transparent;
+  color: #1d70b8;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.prototype-changes__meta {
+  margin: 5px 0 0;
+  color: #505a5f;
+  font-size: 15px;
+}
+
+.prototype-changes__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.prototype-changes__filter {
+  border: 2px solid #0b0c0c;
+  padding: 6px 9px;
+  background: #ffffff;
+  color: #0b0c0c;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.prototype-changes__filter[aria-pressed="true"] {
+  background: #0b0c0c;
+  color: #ffffff;
+}
+
+.prototype-changes__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prototype-changes__item {
+  border-top: 1px solid #b1b4b6;
+  padding: 15px 0;
+}
+
+.prototype-changes__item[hidden] {
+  display: none;
+}
+
+.prototype-changes__item-button {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.prototype-changes__item-heading {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.prototype-changes__item-number {
+  flex: 0 0 auto;
+  min-width: 27px;
+  height: 27px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #0b0c0c;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 27px;
+  text-align: center;
+}
+
+.prototype-changes__item-type {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+.prototype-changes__item-title {
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.prototype-changes__item-description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.prototype-changes__empty {
+  color: #505a5f;
+}
+
